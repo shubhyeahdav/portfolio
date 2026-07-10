@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shubham Yadav — Filmmaker · Founder · Tech Lead</title>
+  <meta name="description" content="I build with code, sell with stories. Portfolio of Shubham Yadav — filmmaker, entrepreneur, tech lead." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- scroll progress hairline -->
+  <div class="progress-hair" aria-hidden="true"></div>
+
+  <!-- film grain overlay (texture generated in JS, applied as background) -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="nav__brand" href="#top" data-scroll>SY<span>©2026</span></a>
+    <nav class="nav__links">
+      <a href="#pillars" data-scroll>Craft</a>
+      <a href="#work" data-scroll>Work</a>
+      <a href="#contact" data-scroll>Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ================================================================
+         SECTION 1 · HERO ORBIT
+         VIDEO SLOT 1 → drop your file at:  portfolio/videos/hero-orbit.mp4
+         (full-body shot, 360° camera orbit, 1080p 16:9 ~8s)
+         Scroll scrubs the clip like a canvas frame sequence.
+         Until the file exists, a procedural orbit placeholder renders.
+         ================================================================ -->
+    <section id="hero" class="hero pin-section">
+      <div class="media-slot" data-src="/videos/hero-orbit.mp4" data-kind="orbit" data-slotname="SLOT 1 · HERO ORBIT">
+        <canvas></canvas>
+        <video muted playsinline preload="auto"></video>
+      </div>
+      <div class="hero__scrim" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <h1 class="hero__name" aria-label="Shubham Yadav">
+          <span class="line"><span class="ltr">S</span><span class="ltr">H</span><span class="ltr">U</span><span class="ltr">B</span><span class="ltr">H</span><span class="ltr">A</span><span class="ltr">M</span></span>
+          <span class="line line--2"><span class="ltr">Y</span><span class="ltr">A</span><span class="ltr">D</span><span class="ltr">A</span><span class="ltr">V</span></span>
+        </h1>
+        <p class="hero__sub">I build with <em>code</em>, sell with <em>stories</em>.</p>
+      </div>
+
+      <div class="hero__meta">
+        <div class="hero__deg mono"><span id="deg">0</span>°</div>
+        <div class="hero__hint mono">SCROLL TO ORBIT<span class="hint-bar"></span></div>
+      </div>
+    </section>
+
+    <!-- marquee · skills -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>FILMMAKING <i>✦</i> VIDEO ESSAYS <i>✦</i> BRAND STORYTELLING <i>✦</i> CONTENT STRATEGY <i>✦</i> MOTION &amp; EDIT <i>✦</i> CODING <i>✦</i> TECH KNOWLEDGE <i>✦</i> COMMUNITY BUILDING <i>✦</i> </span>
+        <span>FILMMAKING <i>✦</i> VIDEO ESSAYS <i>✦</i> BRAND STORYTELLING <i>✦</i> CONTENT STRATEGY <i>✦</i> MOTION &amp; EDIT <i>✦</i> CODING <i>✦</i> TECH KNOWLEDGE <i>✦</i> COMMUNITY BUILDING <i>✦</i> </span>
+      </div>
+    </div>
+
+    <!-- stats · counts up on scroll -->
+    <section class="stats">
+      <p class="stats__label mono">PROOF, IN NUMBERS</p>
+      <div class="stats__grid">
+        <div class="stat"><div class="stat__num"><span data-target="250">0</span><em>+</em></div><p>videos produced</p></div>
+        <div class="stat"><div class="stat__num"><span data-target="4">0</span><em>+</em></div><p>companies founded</p></div>
+        <div class="stat"><div class="stat__num"><span data-target="3">0</span><em>+</em></div><p>years content management</p></div>
+        <div class="stat"><div class="stat__num"><span data-target="6">0</span><em>+</em></div><p>years in content creation</p></div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 2 · THE CRAFT — THREE PILLARS (pinned, one at a time)
+         VIDEO SLOT 2 → drop your file at:  portfolio/videos/craft.mp4
+         (you at a desk with editing work, cinematic push-in)
+         ================================================================ -->
+    <section id="pillars" class="pillars pin-section">
+      <div class="media-slot" data-src="/videos/craft.mp4" data-kind="push" data-slotname="SLOT 2 · THE CRAFT">
+        <canvas></canvas>
+        <video muted playsinline preload="auto"></video>
+      </div>
+      <div class="section-scrim" aria-hidden="true"></div>
+
+      <p class="rail mono">THE CRAFT</p>
+
+      <div class="pillars__stack">
+        <article class="pillar" data-pillar="1">
+          <span class="pillar__ghost" aria-hidden="true">01</span>
+          <h2 class="pillar__title">THE<br/>FILMMAKER</h2>
+          <p class="pillar__copy">Visual essays &amp; short films — including my debut, <em>Existential Evolution</em>.</p>
+        </article>
+        <article class="pillar" data-pillar="2">
+          <span class="pillar__ghost" aria-hidden="true">02</span>
+          <h2 class="pillar__title">THE<br/>ENTREPRENEUR</h2>
+          <p class="pillar__copy">Co-founded <em>Praatik Hires</em> (2024) and <em>GrowthGates</em> (2025).</p>
+        </article>
+        <article class="pillar" data-pillar="3">
+          <span class="pillar__ghost" aria-hidden="true">03</span>
+          <h2 class="pillar__title">THE<br/>TECH LEAD</h2>
+          <p class="pillar__copy">CTO at <em>Sahara Prosthetics</em> (2024–2025) — shipped on coding and tech knowledge.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- marquee · roles -->
+    <div class="marquee marquee--alt" aria-hidden="true">
+      <div class="marquee__track">
+        <span>FILMMAKER <i>✦</i> ENTREPRENEUR <i>✦</i> TECH LEAD <i>✦</i> STORYTELLER <i>✦</i> </span>
+        <span>FILMMAKER <i>✦</i> ENTREPRENEUR <i>✦</i> TECH LEAD <i>✦</i> STORYTELLER <i>✦</i> </span>
+        <span>FILMMAKER <i>✦</i> ENTREPRENEUR <i>✦</i> TECH LEAD <i>✦</i> STORYTELLER <i>✦</i> </span>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SECTION 3 · SELECTED WORK
+         VIDEO SLOT 3 → drop your file at:  portfolio/videos/studio.mp4
+         (content studio, camera dollying sideways)
+         ================================================================ -->
+    <section id="work" class="work pin-section">
+      <div class="media-slot" data-src="/videos/studio.mp4" data-kind="dolly" data-slotname="SLOT 3 · THE STUDIO">
+        <canvas></canvas>
+        <video muted playsinline preload="auto"></video>
+      </div>
+      <div class="section-scrim section-scrim--heavy" aria-hidden="true"></div>
+
+      <div class="work__head">
+        <p class="rail mono">SELECTED WORK</p>
+        <p class="work__count mono">5 PROJECTS · 2023 — NOW</p>
+      </div>
+
+      <ul class="work__list">
+        <li class="work-row" data-initials="EE" data-grad="1">
+          <span class="work-row__idx mono">01</span>
+          <h3 class="work-row__title">Existential Evolution</h3>
+          <p class="work-row__pitch">A debut short film asking what evolution feels like from the inside.</p>
+          <span class="work-row__meta mono">FILM · DEBUT</span>
+        </li>
+        <li class="work-row" data-initials="PH" data-grad="2">
+          <span class="work-row__idx mono">02</span>
+          <h3 class="work-row__title">Praatik Hires</h3>
+          <p class="work-row__pitch">Recruitment, rebuilt as a story people want to join.</p>
+          <span class="work-row__meta mono">CO-FOUNDER · 2024</span>
+        </li>
+        <li class="work-row" data-initials="GG" data-grad="3">
+          <span class="work-row__idx mono">03</span>
+          <h3 class="work-row__title">GrowthGates</h3>
+          <p class="work-row__pitch">A community venture turning growth into a shared sport.</p>
+          <span class="work-row__meta mono">CO-FOUNDER · 2025</span>
+        </li>
+        <li class="work-row" data-initials="SP" data-grad="4">
+          <span class="work-row__idx mono">04</span>
+          <h3 class="work-row__title">Sahara Prosthetics</h3>
+          <p class="work-row__pitch">Led the tech behind prosthetics that change daily lives.</p>
+          <span class="work-row__meta mono">CTO · 2024–2025</span>
+        </li>
+        <li class="work-row" data-initials="BA" data-grad="5">
+          <span class="work-row__idx mono">05</span>
+          <h3 class="work-row__title">Baakhapaa App</h3>
+          <p class="work-row__pitch">Content management, video essays &amp; graphics — end to end.</p>
+          <span class="work-row__meta mono">CONTENT LEAD · 2023–NOW</span>
+        </li>
+      </ul>
+
+      <!-- floating hover preview card (follows cursor over rows) -->
+      <div class="work-preview" id="work-preview" aria-hidden="true">
+        <span class="work-preview__initials">EE</span>
+        <span class="work-preview__tag mono">PREVIEW</span>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 4 · FINALE
+         VIDEO SLOT 4 → drop your file at:  portfolio/videos/walk.mp4
+         (walking toward camera down a gallery of project screens)
+         ================================================================ -->
+    <section id="contact" class="finale pin-section">
+      <div class="media-slot" data-src="/videos/walk.mp4" data-kind="walk" data-slotname="SLOT 4 · THE WALK">
+        <canvas></canvas>
+        <video muted playsinline preload="auto"></video>
+      </div>
+      <div class="section-scrim" aria-hidden="true"></div>
+
+      <div class="finale__content">
+        <h2 class="finale__title">
+          <span class="fw">Want</span> <span class="fw">content</span> <span class="fw">and</span> <span class="fw">brands</span><br/>
+          <span class="fw">built</span> <span class="fw"><em>like</em></span> <span class="fw"><em>this?</em></span>
+        </h2>
+        <div class="finale__ctas">
+          <!-- SWAP: replace mailto with your Cal.com / Calendly booking link -->
+          <a class="btn btn--primary" href="mailto:baakhapaa@gmail.com?subject=Let%27s%20build%20something">Book a Call</a>
+          <a class="btn btn--ghost" href="#work" data-scroll>View Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__links">
+        <a href="https://instagram.com/shubhyeahh" target="_blank" rel="noopener">IG · @shubhyeahh</a>
+        <a href="https://instagram.com/shubheffects" target="_blank" rel="noopener">IG · @shubheffects</a>
+        <a href="https://linkedin.com/in/shubhamcreations" target="_blank" rel="noopener">IN · shubhamcreations</a>
+      </div>
+      <p class="footer__line mono">© 2026 SHUBHAM YADAV — BUILT WITH CODE, SOLD WITH STORIES.</p>
+    </footer>
+
+  </main>
+
+  <!-- GSAP + ScrollTrigger + Lenis (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
