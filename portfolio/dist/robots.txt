@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# SWAP: update the domain when you deploy
+Sitemap: https://yadavshubham.com.np/sitemap.xml
