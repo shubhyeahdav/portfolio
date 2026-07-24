@@ -415,21 +415,37 @@ html.has-cursor [data-cursor] { cursor: none; }
 }
 
 .about__portrait {
-  position: relative; aspect-ratio: 4 / 5; border-radius: 16px; overflow: hidden;
-  background: linear-gradient(155deg, #1a1e28, #0b0c10);
-  border: 1px solid var(--hairline);
   position: sticky; top: 12vh;
+  aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden;
+  background: linear-gradient(155deg, #1a1e28, #0b0c10);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
 }
-.about__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.about__img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.about__portrait:hover .about__img { transform: scale(1.035); }
 .about__img[data-missing] { display: none; }
+/* soft scrim so the caption stays legible over the photo */
+.about__portrait::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(8, 9, 12, 0.85), rgba(8, 9, 12, 0) 42%);
+}
+/* monogram is a FALLBACK only — shown when the photo is missing */
 .about__mono {
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
   font-family: var(--font-display); font-size: clamp(120px, 22vw, 240px);
   color: transparent; -webkit-text-stroke: 1.5px rgba(79, 224, 255, 0.4);
 }
+.about__img[data-missing] ~ .about__mono { display: flex; }
 .about__cap {
-  position: absolute; left: 16px; bottom: 16px; z-index: 2;
-  color: var(--paper); opacity: 0.8;
+  position: absolute; left: 18px; bottom: 16px; z-index: 3;
+  display: flex; align-items: center; gap: 10px;
+  color: var(--paper); opacity: 0.92;
+}
+.about__cap::before {
+  content: ""; width: 22px; height: 1px; background: var(--accent); flex: none;
 }
 
 .about__statement {
