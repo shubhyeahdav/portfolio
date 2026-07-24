@@ -342,6 +342,21 @@ ScrollTrigger.create({
 const degEl = document.getElementById("deg");
 
 if (!REDUCED) {
+  // Held hidden behind the preloader curtain, then revealed once — so the
+  // name greets visitors immediately (personal brand), not only on scroll.
+  gsap.set(".hero__name .ltr", { yPercent: 118, rotate: 5, autoAlpha: 0 });
+  gsap.set(".hero__sub", { autoAlpha: 0, y: 26 });
+  gsap.set(".hero__meta", { autoAlpha: 0 });
+
+  window.__playHeroIntro = () => {
+    gsap.timeline()
+      .to(".hero__name .ltr",
+        { yPercent: 0, rotate: 0, autoAlpha: 1, stagger: 0.05, duration: 0.95, ease: "power3.out" })
+      .to(".hero__sub", { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out" }, "-=0.45")
+      .to(".hero__meta", { autoAlpha: 1, duration: 0.4 }, "-=0.35");
+  };
+
+  // scroll only drives the orbit + subtle kinetic breathing (name stays visible)
   const heroTl = gsap.timeline({
     scrollTrigger: {
       trigger: "#hero",
@@ -357,19 +372,8 @@ if (!REDUCED) {
   });
 
   heroTl
-    .fromTo(".hero__name .ltr",
-      { yPercent: 130, rotate: 5 },
-      { yPercent: 0, rotate: 0, stagger: 0.055, ease: "power3.out", duration: 1.1 }, 0)
-    .fromTo(".hero__sub",
-      { autoAlpha: 0, y: 28 },
-      { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.75)
-    .fromTo(".hero__meta",
-      { autoAlpha: 0 },
-      { autoAlpha: 1, duration: 0.4 }, 0.9)
-    // kinetic tracking: letters breathe apart as the orbit continues
-    .to(".hero__name .line", { letterSpacing: "0.06em", duration: 1.6, ease: "none" }, 1.4)
-    .to(".hero__sub", { autoAlpha: 0.35, duration: 0.8 }, 2.0)
-    .to(".hero__content", { yPercent: -6, duration: 1.0, ease: "none" }, 2.2);
+    .to(".hero__name .line", { letterSpacing: "0.06em", duration: 1.6, ease: "none" }, 0.2)
+    .to(".hero__content", { yPercent: -6, duration: 1.0, ease: "none" }, 1.4);
 } else {
   gsap.set(".hero__name .ltr, .hero__sub, .hero__meta", { clearProps: "all", opacity: 1 });
   slots.orbit.setProgress(0.35);
@@ -478,6 +482,109 @@ if (!REDUCED) {
 } else {
   slots.walk.setProgress(0.8);
 }
+
+/* ---------------- ABOUT: portrait fallback + line/element reveals ---------------- */
+
+// If the portrait image is missing/errors, drop to the monogram card.
+const aboutImg = document.querySelector(".about__img");
+if (aboutImg) {
+  const failPortrait = () => aboutImg.setAttribute("data-missing", "");
+  aboutImg.addEventListener("error", failPortrait);
+  if (aboutImg.complete && aboutImg.naturalWidth === 0) failPortrait();
+}
+
+if (!REDUCED) {
+  gsap.utils.toArray(".about .reveal, .about .reveal-lines").forEach((el) => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: "top 85%", once: true },
+      autoAlpha: 0, y: 40, duration: 0.7, ease: "power3.out",
+    });
+  });
+}
+
+/* ---------------- PRELOADER: count 0→100, wipe up, hand off to hero ---------------- */
+
+(function preloader() {
+  const pl = document.getElementById("preloader");
+  if (!pl) return;
+  const countEl = document.getElementById("pl-count");
+  const counter = { v: 0 };
+
+  // hold scroll until the intro finishes
+  lenis?.stop();
+  document.documentElement.classList.remove("loaded");
+
+  const finish = () => {
+    document.documentElement.classList.add("loaded");
+    lenis?.start();
+    ScrollTrigger.refresh();
+    window.__playHeroIntro?.();
+  };
+
+  if (REDUCED) {
+    gsap.set(pl, { autoAlpha: 0, display: "none" });
+    if (countEl) countEl.textContent = "100";
+    finish();
+    return;
+  }
+
+  const tl = gsap.timeline({ onComplete: finish });
+  tl.to(counter, {
+      v: 100, duration: 1.6, ease: "power2.inOut",
+      onUpdate: () => { if (countEl) countEl.textContent = Math.round(counter.v); },
+    })
+    .to(".preloader__tag", { autoAlpha: 1, duration: 0.4 }, 0.2)
+    .to(".preloader__count", { autoAlpha: 0, duration: 0.3 }, "-=0.1")
+    .to(".preloader__name .pw", { yPercent: -110, stagger: 0.06, duration: 0.5, ease: "power3.in" }, "-=0.15")
+    .to(".preloader__wipe", { yPercent: 0, duration: 0.6, ease: "power4.inOut" }, "-=0.35")
+    .set(pl, { display: "none" })
+    // kick the hero name reveal in fresh once the curtain lifts
+    .add(() => ScrollTrigger.refresh());
+})();
+
+/* ---------------- CUSTOM CURSOR: dot + lagging ring, magnetic buttons ---------------- */
+
+(function customCursor() {
+  const fine = window.matchMedia("(pointer: fine)").matches;
+  if (REDUCED || !fine) return;
+
+  const cursor = document.getElementById("cursor");
+  if (!cursor) return;
+  document.documentElement.classList.add("has-cursor");
+
+  const ring = cursor.querySelector(".cursor__ring");
+  const dot = cursor.querySelector(".cursor__dot");
+  const setDotX = gsap.quickSetter(dot, "x", "px");
+  const setDotY = gsap.quickSetter(dot, "y", "px");
+  const ringX = gsap.quickTo(ring, "x", { duration: 0.32, ease: "power3.out" });
+  const ringY = gsap.quickTo(ring, "y", { duration: 0.32, ease: "power3.out" });
+
+  window.addEventListener("mousemove", (e) => {
+    setDotX(e.clientX); setDotY(e.clientY);
+    ringX(e.clientX); ringY(e.clientY);
+  }, { passive: true });
+
+  const hoverSel = "a, .btn, .work-row, [data-cursor]";
+  document.querySelectorAll(hoverSel).forEach((el) => {
+    el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
+    el.addEventListener("mouseleave", () => cursor.classList.remove("is-hover"));
+  });
+
+  // magnetic pull on primary interactive chrome
+  document.querySelectorAll(".btn, .nav__links a, .nav__brand").forEach((el) => {
+    const strength = 0.35;
+    el.addEventListener("mousemove", (e) => {
+      const r = el.getBoundingClientRect();
+      gsap.to(el, {
+        x: (e.clientX - (r.left + r.width / 2)) * strength,
+        y: (e.clientY - (r.top + r.height / 2)) * strength,
+        duration: 0.4, ease: "power3.out",
+      });
+    });
+    el.addEventListener("mouseleave", () =>
+      gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.4)" }));
+  });
+})();
 
 /* ---------------- refresh after layout settles ---------------- */
 

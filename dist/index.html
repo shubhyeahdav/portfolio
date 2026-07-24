@@ -13,6 +13,26 @@
 </head>
 <body>
 
+  <!-- ================================================================
+       PRELOADER · counted reveal (0→100) that hands off to the hero
+       ================================================================ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__row">
+      <span class="preloader__name">
+        <span class="pw">SHUBHAM</span> <span class="pw">YADAV</span>
+      </span>
+    </div>
+    <span class="preloader__tag mono">BUILT WITH CODE · SOLD WITH STORIES</span>
+    <span class="preloader__count mono"><span id="pl-count">0</span>%</span>
+    <span class="preloader__wipe" aria-hidden="true"></span>
+  </div>
+
+  <!-- custom magnetic cursor (hidden on touch / reduced-motion) -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <span class="cursor__ring"></span>
+    <span class="cursor__dot"></span>
+  </div>
+
   <!-- scroll progress hairline -->
   <div class="progress-hair" aria-hidden="true"></div>
 
@@ -22,6 +42,7 @@
   <header class="nav">
     <a class="nav__brand" href="#top" data-scroll>SY<span>©2026</span></a>
     <nav class="nav__links">
+      <a href="#about" data-scroll>About</a>
       <a href="#pillars" data-scroll>Craft</a>
       <a href="#work" data-scroll>Work</a>
       <a href="#contact" data-scroll>Contact</a>
@@ -74,6 +95,45 @@
         <div class="stat"><div class="stat__num"><span data-target="4">0</span><em>+</em></div><p>companies founded</p></div>
         <div class="stat"><div class="stat__num"><span data-target="3">0</span><em>+</em></div><p>years content management</p></div>
         <div class="stat"><div class="stat__num"><span data-target="6">0</span><em>+</em></div><p>years in content creation</p></div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION · ABOUT / MANIFESTO — the personal-brand story
+         PORTRAIT SLOT → drop your file at:  /portrait.jpg  (portrait 4:5)
+         Until it exists, a monogram card renders in its place.
+         ================================================================ -->
+    <section id="about" class="about">
+      <p class="rail rail--static mono">WHO I AM</p>
+
+      <div class="about__grid">
+        <figure class="about__portrait" data-cursor="view">
+          <img class="about__img" src="/portrait.jpg" alt="Portrait of Shubham Yadav" loading="lazy" />
+          <span class="about__mono" aria-hidden="true">SY</span>
+          <figcaption class="about__cap mono">SHUBHAM YADAV · EST. 2020</figcaption>
+        </figure>
+
+        <div class="about__body">
+          <h2 class="about__statement reveal-lines">
+            I'm a <em>filmmaker</em> who learned to <em>code</em>, and a
+            <em>founder</em> who never stopped telling <em>stories</em>.
+          </h2>
+          <p class="about__para reveal">
+            For six years I've lived at the seam between narrative and technology —
+            shooting video essays, editing motion, and shipping products. The camera
+            taught me how people <em>feel</em>. The codebase taught me how things
+            <em>work</em>. I build in the overlap.
+          </p>
+          <p class="about__para reveal">
+            I've produced 250+ videos, co-founded companies, and led engineering as a
+            CTO — but the through-line has always been the same: take something real,
+            make people care about it, and make it move.
+          </p>
+          <div class="about__sign reveal">
+            <span class="about__signature">Shubham</span>
+            <span class="about__role mono">FILMMAKER · FOUNDER · TECH LEAD</span>
+          </div>
+        </div>
       </div>
     </section>
 
